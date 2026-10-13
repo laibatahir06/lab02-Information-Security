@@ -1,0 +1,35 @@
+ciphertext = "WIGYVI XLI WIVZIV FIJSVI WLEVMRK HEXE"
+
+counts = {}
+
+for ch in ciphertext:
+    if ch.isalpha():
+        if ch in counts:
+            counts[ch] += 1
+        else:
+            counts[ch] = 1
+
+
+print("Letter Frequencies:")
+
+for ch in sorted(counts):
+    print(ch, ":", counts[ch])
+
+
+print("\nMost frequent letters:")
+for ch in sorted(counts, key=counts.get, reverse=True)[:3]:
+    print(ch, ":", counts[ch])
+
+
+key = 4
+plaintext = ""
+
+for ch in ciphertext:
+    if ch.isalpha():
+        new_ch = chr((ord(ch) - ord('A') - key) % 26 + ord('A'))
+        plaintext += new_ch
+    else:
+        plaintext += ch
+
+print("\nEstimated key:", key)
+print("Decrypted message:", plaintext)
