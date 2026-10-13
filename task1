@@ -1,0 +1,27 @@
+text = "INFORMATION SECURITY HELPS PROTECT STUDENT DATA FROM UNAUTHORIZED ACCESS"
+
+counts = {}
+for ch in text:
+    if ch.isalpha():
+        ch = ch.upper()
+        if ch in counts:
+            counts[ch] += 1
+        else:
+            counts[ch] = 1
+
+total = sum(counts.values())
+
+letters = sorted(counts, key=counts.get, reverse=True)
+
+
+print("Letter  Count  Frequency (%)")
+
+for ch in letters:
+    percentage = counts[ch] / total * 100
+    print(ch, "\t", counts[ch], "\t", round(percentage, 2), "%")
+
+
+print("\nThree most frequent letters:")
+
+for ch in letters[:3]:
+    print(ch, ":", counts[ch])
